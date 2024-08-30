@@ -10,7 +10,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import "./index.css";
 
 const CustomPieChart = (props) => {
-  const { pieChartData } = props;
+  const { pieChartData,media } = props;
 
   const pieLegend = [
     {
@@ -43,11 +43,12 @@ const CustomPieChart = (props) => {
         fill="white"
         textAnchor="middle"
         dominantBaseline="central"
-        fontSize={14}
+        fontSize={`${media.matches?30:18}`}
         fontWeight={600}
       >{`${(percent * 100).toFixed(1)}%`}</text>
     );
   };
+
   const CustomLabel = ({ viewBox }) => {
     const { cx, cy } = viewBox;
     return (
@@ -55,7 +56,7 @@ const CustomPieChart = (props) => {
         <text x={cx - 15} y={cy - 5}>
           <tspan
             style={{
-              fontSize: "14px",
+              fontSize: media.matches?20:14,
               fill: "#2b2a2a",
               fontFamily: "Roboto",
             }}
@@ -63,11 +64,11 @@ const CustomPieChart = (props) => {
             Total
           </tspan>
         </text>
-        <text x={cx - 18} y={cy + 22}>
+        <text x={cx - 20} y={cy + 22}>
           <tspan
             style={{
               fontWeight: 700,
-              fontSize: "20px",
+              fontSize: media.matches?30:20,
               fill: "#000000",
               fontFamily: "Roboto",
             }}
@@ -85,8 +86,8 @@ const CustomPieChart = (props) => {
         <p className="pie-chart-title">Portion of Sales</p>
         <IoMdInformationCircleOutline size={30} />
       </div>
-      <ResponsiveContainer aspect={1}>
-        <PieChart width={550} height={350}>
+      <ResponsiveContainer height={450} aspect={1}>
+        <PieChart  width={500} height={350}>
           <Legend
             verticalAlign="bottom"
             height={10}

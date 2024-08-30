@@ -35,4 +35,7 @@
     .line-chart-container{
         width:100%;
     }
+    .responsive-linechart{
+        height:60%;
+    }
 }

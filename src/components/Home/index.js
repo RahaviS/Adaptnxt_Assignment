@@ -86,33 +86,37 @@ const pieChartData = [
 const Home = () => {
   const [media,setMedia] = useState(null)
   const [activeMenu, setActiveMenu] = useState(sideMenu[0].id);
-  const [isSidebarShown,setIsSidebarShown]=useState(false);
+  const [showSidebar,setShowSidebar]=useState(false);
 
-  useEffect(()=>{
-    const mediaSize = window.matchMedia("(max-width: 768px)")
-    setMedia(mediaSize)
-  },[])
+  useEffect(() => {
+    const handleResize = () => {
+      setMedia(window.matchMedia("(max-width: 768px)"))
+    }
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const setMenu = (id) => {
     setActiveMenu(id);
   };
 
   const setSidebarOpen=()=>{  
-    setIsSidebarShown(!isSidebarShown)
+    setShowSidebar(!showSidebar)
   }
-
+  
   return (
     <div className="bg-container">
-      {((media && media.matches!==true) || isSidebarShown)&&
-      <Sidebar sideMenu={sideMenu} setMenu={setMenu} activeMenu={activeMenu}  setSidebarOpen={setSidebarOpen}/>
-      }
+      {(!media || !media.matches || showSidebar)&&  
+      <Sidebar sideMenu={sideMenu} setMenu={setMenu} activeMenu={activeMenu}  setSidebarOpen={setSidebarOpen}/>}
       <div className="home-container">
-      <Navbar activeMenu={activeMenu} setSidebarOpen={setSidebarOpen} isSidebarShown={isSidebarShown}/>
+      <Navbar activeMenu={activeMenu} setSidebarOpen={setSidebarOpen} showSidebar={showSidebar}/>
       <div className="contents-container">
       {activeMenu === "dashboard" ? (
         <div className="dashboard-contents">
-          <CustomLineChart lineChartData={lineChartData} />
-          <CustomPieChart pieChartData={pieChartData} />
+          <CustomLineChart lineChartData={lineChartData} showSidebar={showSidebar} media={media}/>
+          <CustomPieChart pieChartData={pieChartData} media={media}/>
         </div>
       ) : (
         <div className="no-contents">
