@@ -1,0 +1,42 @@
+.sidebar-container{
+    height: 100%;
+    width:20%;
+}
+.close-icon{
+    display: none;
+}
+.side-menu-list{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    height:80%;
+    padding-right:10px;
+}
+.side-menu-item{
+    font-family: sans-serif;
+    color:#8f8e8e;
+    font-size:16px; 
+    width:100%; 
+    cursor: pointer;
+    padding:8px;
+    border-radius:6px;
+}
+.active{
+    background-color:#faf0ff;
+    color: #c392f4;
+    font-weight: 600;
+}
+@media screen and (max-width:768px){
+    .sidebar-container{
+        width:30%;
+    }
+    .side-menu-list{
+        padding-left:8px;
+    }
+    .close-icon{
+        display: block;
+        text-align: right;
+    }
+}
