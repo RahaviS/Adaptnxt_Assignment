@@ -43,7 +43,7 @@ const CustomPieChart = (props) => {
         fill="white"
         textAnchor="middle"
         dominantBaseline="central"
-        fontSize={`${media.matches?30:18}`}
+        fontSize={`${media &&(media.matches?30:18)}`}
         fontWeight={600}
       >{`${(percent * 100).toFixed(1)}%`}</text>
     );
@@ -56,7 +56,7 @@ const CustomPieChart = (props) => {
         <text x={cx - 15} y={cy - 5}>
           <tspan
             style={{
-              fontSize: media.matches?20:14,
+              fontSize: media &&(media.matches?20:14),
               fill: "#2b2a2a",
               fontFamily: "Roboto",
             }}
@@ -68,7 +68,7 @@ const CustomPieChart = (props) => {
           <tspan
             style={{
               fontWeight: 700,
-              fontSize: media.matches?30:20,
+              fontSize: media && (media.matches?30:20),
               fill: "#000000",
               fontFamily: "Roboto",
             }}

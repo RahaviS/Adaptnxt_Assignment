@@ -50,11 +50,11 @@ const CustomLineChart=(props)=>{
           margin={{ top: 15, right: 30, left: 20, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="week" tick={{fontSize: media.matches?15:12}}/>
-          <YAxis yAxisId="left-axis" tickFormatter={getFormattedValue} tick={{fontSize: media.matches?14:12}}/>
-          <YAxis yAxisId="right-axis" orientation="right" tick={{fontSize: media.matches?14:12}}/>
+          <XAxis dataKey="week" tick={{fontSize: media && (media.matches?15:12)}}/>
+          <YAxis yAxisId="left-axis" tickFormatter={getFormattedValue} tick={{fontSize:  media && (media.matches?14:12)}}/>
+          <YAxis yAxisId="right-axis" orientation="right" tick={{fontSize:  media && (media.matches?14:12)}}/>
           <Tooltip content={<CustomTooltip />}/>
-          <Legend verticalAlign='top' height={46} wrapperStyle={{ fontSize: media.matches?"20px":"16px"}}/>
+          <Legend verticalAlign='top' height={46} wrapperStyle={{ fontSize:  media && (media.matches?"20px":"16px")}}/>
           <Line yAxisId="right-axis" type="monotone" dataKey="orders" stroke="#f1953b" activeDot={{ r: 8 }} strokeWidth={2}/>
           <Line yAxisId="left-axis" type="monotone" dataKey="sales" stroke="#4ba6a9" activeDot={{ r: 8 }} strokeWidth={2} />
         </LineChart>
